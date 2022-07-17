@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import digio.coding.task.file.CustomFileReader;
+import digio.coding.task.util.UtilityService;
 
 /**
  * Solution implementation.
@@ -99,17 +100,11 @@ public class Solution {
 	
 	private Object[] getTopResults(Map<String, Integer> map, int numOfResults) {
 		Object[] result = new Object[numOfResults];
-		List<Map.Entry<String, Integer>> sortedMap = sortMap(map);
+		List<Map.Entry<String, Integer>> sortedMap = UtilityService.sortMap(map);
 
 		for (int i = 0; i < numOfResults; i++) {
 			result[i] = sortedMap.get(i).getKey();
 		}
 		return result;
-	}
-	
-	private List<Map.Entry<String, Integer>> sortMap(Map<String, Integer> unsortMap) {
-		List<Map.Entry<String, Integer>> list = new LinkedList<>(unsortMap.entrySet());
-		Collections.sort(list, (e1, e2) -> e2.getValue().compareTo(e1.getValue()));
-		return list;
 	}
 }

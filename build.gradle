@@ -16,6 +16,8 @@ plugins {
 sourceCompatibility=1.8
 targetCompatibility=1.8
 
+//mainClassName = 'digio.coding.task.App'
+
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -25,6 +27,10 @@ repositories {
 jar{
 	archiveBaseName='digio-coding-task'
 	archiveVersion='1.0'
+	
+	manifest {
+        attributes 'Main-Class': 'digio.coding.task.App'
+    }
 }
 
 test{

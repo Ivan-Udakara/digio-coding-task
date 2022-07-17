@@ -3,9 +3,7 @@ package digio.coding.task;
 import static digio.coding.task.util.Const.REGEX_IP;
 import static digio.coding.task.util.Const.REGEX_URL;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -23,15 +21,6 @@ import digio.coding.task.util.UtilityService;
  */
 public class Solution {
 	private static final Logger LOG = Logger.getLogger(Solution.class.getName());
-	// read file
-	// iterate line by line
-	// fill 2 maps
-		// 1. IP, count
-		// 2. URL, count
-	// return
-		// number of unique IPs -> map1.size
-		// top 3 most visited URLs -> map2 entries with highest count
-		// top 3 most active IPs -> map1 entries with highest count
 	
 	private final CustomFileReader fileReader;
 	private Map<String, Integer> ipAddressMap = new HashMap<>();

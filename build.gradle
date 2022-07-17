@@ -25,6 +25,10 @@ repositories {
 jar{
 	archiveBaseName='digio-coding-task'
 	archiveVersion='1.0'
+	
+	manifest {
+        attributes 'Main-Class': 'digio.coding.task.App'
+    }
 }
 
 test{

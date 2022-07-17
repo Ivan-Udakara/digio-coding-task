@@ -116,7 +116,7 @@ public class Solution {
 	private Map<String, Integer> sortMap(Map<String, Integer> unsortMap) {
 		List<Map.Entry<String, Integer>> list = new LinkedList<>(unsortMap.entrySet());
 
-		Collections.sort(list, new Comparator<>() {
+		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
 			public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
 				return (e1.getValue()).compareTo(e2.getValue());
 			}

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package digio.coding.task.util;
 
 /**

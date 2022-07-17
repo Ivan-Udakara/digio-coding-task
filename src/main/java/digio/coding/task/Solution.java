@@ -4,10 +4,7 @@ import static digio.coding.task.util.Const.REGEX_IP;
 import static digio.coding.task.util.Const.REGEX_URL;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -77,8 +74,8 @@ public class Solution {
 	private void extractIpInfo(Matcher ipMatcher) {
 		String ipAddr;
 		if (ipMatcher.find()) {
-			LOG.log(Level.INFO, "{0}", ipMatcher.group(0));
 			ipAddr = ipMatcher.group(0).trim();
+			LOG.log(Level.INFO, "{0}", ipAddr);
 			if(ipAddressMap.containsKey(ipAddr)) {
 				ipAddressMap.put(ipAddr, ipAddressMap.get(ipAddr) + 1);
 			} else {
@@ -90,8 +87,8 @@ public class Solution {
 	private void extractUrlInfo(Matcher urlMatcher) {
 		String url;
 		if (urlMatcher.find()) {
-			LOG.log(Level.INFO, "{0}", urlMatcher.group(0));
-			url = urlMatcher.group(0).trim();
+			url = urlMatcher.group(1).trim();
+			LOG.log(Level.INFO, "{0}", url);
 			if(urlMap.containsKey(url)) {
 				urlMap.put(url, urlMap.get(url) + 1);
 			} else {
@@ -102,27 +99,17 @@ public class Solution {
 	
 	private Object[] getTopResults(Map<String, Integer> map, int numOfResults) {
 		Object[] result = new Object[numOfResults];
-		Map<String, Integer> sortedMap = sortMap(map);
-		Iterator<Map.Entry<String, Integer>> iterate = sortedMap.entrySet().iterator();
+		List<Map.Entry<String, Integer>> sortedMap = sortMap(map);
+
 		for (int i = 0; i < numOfResults; i++) {
-			if (iterate.hasNext()) {
-				Map.Entry<String, Integer> e = iterate.next();
-				result[i] = e.getKey();
-			}
+			result[i] = sortedMap.get(i).getKey();
 		}
 		return result;
 	}
 	
-	private Map<String, Integer> sortMap(Map<String, Integer> unsortMap) {
+	private List<Map.Entry<String, Integer>> sortMap(Map<String, Integer> unsortMap) {
 		List<Map.Entry<String, Integer>> list = new LinkedList<>(unsortMap.entrySet());
-		
 		Collections.sort(list, (e1, e2) -> e2.getValue().compareTo(e1.getValue()));
-
-		Map<String, Integer> sortedMap = new LinkedHashMap<>();
-		for (Map.Entry<String, Integer> entry : list) {
-			sortedMap.put(entry.getKey(), entry.getValue());
-		}
-
-		return sortedMap;
+		return list;
 	}
 }
